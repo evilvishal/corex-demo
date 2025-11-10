@@ -52,7 +52,7 @@ const BMISection = () => {
     
     if (bmi < 18.5) {
       category = 'Underweight';
-      color = 'text-blue-400';
+      color = 'text-blue-400'; // keep blue as info color
       borderColor = 'border-blue-400';
       bodyImage = '/images/body-types/underweight.jpeg';
       motivation = "Your body is underweight. We need to help you build healthy muscle mass. Let's schedule a call to create your solution.";
@@ -61,25 +61,26 @@ const BMISection = () => {
       headingText = "We See Your Body Type";
     } else if (bmi < 25) {
       category = 'Normal Weight';
-      color = 'text-green-400';
-      borderColor = 'border-green-400';
+      // Use gold gradient color instead of green to match theme
+      color = 'text-[#C5A100]';
+      borderColor = 'border-[#C5A100]';
       bodyImage = '/images/body-types/normal-weight.jpeg';
       motivation = "Your body is in normal range, but you want more! We need to optimize your physique. Let's schedule a call for your solution.";
       motivationIcon = "🎯";
-      motivationColor = "from-green-600/20 to-emerald-600/20 border-green-400/50";
+      motivationColor = "from-[#C5A100]/20 to-[#FFE085]/20 border-[#C5A100]/50";
       headingText = "Ready for Next Level?";
     } else if (bmi < 30) {
       category = 'Overweight';
-      color = 'text-orange-400';
-      borderColor = 'border-orange-400';
+      color = 'text-[#C5A100]';
+      borderColor = 'border-[#C5A100]';
       bodyImage = '/images/body-types/overweight.jpeg';
       motivation = "Your body is carrying extra weight. We need to help you lose it sustainably. Let's schedule a call to find your solution.";
       motivationIcon = "🔥";
-      motivationColor = "from-orange-600/20 to-yellow-600/20 border-orange-400/50";
+      motivationColor = "from-[#C5A100]/20 to-[#FFE085]/20 border-[#C5A100]/50";
       headingText = "We See Your Challenge";
     } else {
       category = 'Obese';
-      color = 'text-red-400';
+      color = 'text-red-400'; // keep red for urgency
       borderColor = 'border-red-400';
       bodyImage = '/images/body-types/obese.jpeg';
       motivation = "Your body needs urgent attention. We need to create a personal plan for you. Let's schedule a call to solve this together.";
@@ -111,7 +112,6 @@ const BMISection = () => {
         setAgeError('');
       }
     }
-
     if (currentStep < 4) {
       setIsTransitioning(true);
       setTimeout(() => {
@@ -119,7 +119,6 @@ const BMISection = () => {
         setTimeout(() => setIsTransitioning(false), 50);
       }, 300);
     } else {
-      // DIRECT TRANSITION TO FULL RESULTS PAGE
       setShowResults(true);
     }
   };
@@ -152,7 +151,7 @@ const BMISection = () => {
     }
   };
 
-  // INSTANT FULL RESULTS PAGE - ORANGE THEME
+  // RESULTS PAGE - Gold Orange Theme
   if (showResults) {
     return (
       <section 
@@ -166,42 +165,34 @@ const BMISection = () => {
         }}
       >
         <div className="absolute inset-0 bg-black/85"></div>
-        
-        {/* CoreX Logo - ORANGE THEME */}
         <div className="absolute top-6 left-6 z-20">
           <div className="text-2xl font-black text-white">
-            <span className="text-orange-400">Core</span>X
+            <span className="text-[#C5A100]">Core</span>X
           </div>
         </div>
-        
         <div className="max-w-2xl mx-auto text-center text-white px-4 relative z-10 py-8">
-          
-          {/* HEADER - ORANGE THEME */}
           <div className="mb-8">
-            <div className="inline-flex items-center bg-orange-500/20 text-orange-300 px-4 py-2 rounded-full text-sm font-black mb-4 border border-orange-400/50 backdrop-blur-md">
+            <div className="inline-flex items-center bg-[#C5A100]/20 text-[#C5A100] px-4 py-2 rounded-full text-sm font-black mb-4 border border-[#C5A100]/50 backdrop-blur-md">
               🎉 Assessment Complete
             </div>
             <h1 
               className="text-3xl md:text-4xl font-black mb-3 text-white drop-shadow-2xl"
-              style={{ textShadow: '0 0 30px rgba(255, 102, 0, 0.5)' }}
+              style={{ textShadow: '0 0 30px rgba(197,161,0,0.7)' }}
             >
-              Your Personal <span className="bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent font-black">
+              Your Personal <span className="bg-gradient-to-r from-[#C5A100] to-[#FFE085] bg-clip-text text-transparent font-black">
                 Fitness Blueprint
               </span>
             </h1>
-            <p className="text-base text-gray-100 font-bold drop-shadow-xl">
+            <p className="text-base text-[#FFE085] font-bold drop-shadow-xl">
               Based on your BMI and goals, here's your personalized CoreX plan
             </p>
           </div>
-          
-          {/* BMI RESULTS CARDS - ORANGE THEME */}
-          <div className="bg-black/60 backdrop-blur-xl rounded-2xl p-4 border border-orange-400/50 mb-6 shadow-2xl">
+          <div className="bg-black/60 backdrop-blur-xl rounded-2xl p-4 border border-[#C5A100]/50 mb-6 shadow-2xl">
             <div className="grid grid-cols-3 gap-4 items-center">
               <div className="text-center">
-                <div className="text-3xl font-black text-orange-400 mb-1 drop-shadow-2xl">{bmiResult?.bmi}</div>
+                <div className="text-3xl font-black text-[#C5A100] mb-1 drop-shadow-2xl">{bmiResult?.bmi}</div>
                 <div className="text-gray-100 font-bold text-sm">BMI Score</div>
               </div>
-              
               <div className="text-center">
                 <div className="w-16 h-20 mx-auto mb-2 bg-white/90 rounded-lg overflow-hidden shadow-xl border border-white">
                   <img 
@@ -214,10 +205,9 @@ const BMISection = () => {
                   {bmiResult?.category}
                 </div>
               </div>
-              
               <div className="text-center space-y-2">
-                <div className="bg-orange-500/20 backdrop-blur-md rounded-lg p-2 border border-orange-400/30">
-                  <div className="text-orange-300 font-black text-sm">{formData.gender}</div>
+                <div className="bg-[#C5A100]/20 backdrop-blur-md rounded-lg p-2 border border-[#C5A100]/30">
+                  <div className="text-[#FFE085] font-black text-sm">{formData.gender}</div>
                   <div className="text-gray-200 text-xs font-bold">Gender</div>
                 </div>
                 <div className="bg-red-500/20 backdrop-blur-md rounded-lg p-2 border border-red-400/30">
@@ -227,54 +217,43 @@ const BMISection = () => {
               </div>
             </div>
           </div>
-
-          {/* MOTIVATION SECTION */}
           <div className={`bg-gradient-to-r ${bmiResult?.motivationColor} backdrop-blur-xl rounded-2xl p-4 border shadow-2xl mb-8`}>
             <div className="text-center">
               <h3 className="text-lg font-black text-white mb-3 flex items-center justify-center space-x-3">
-                <span className="text-2xl">💪</span>
+                <span className="text-2xl">{bmiResult?.motivationIcon}</span>
                 <span>{bmiResult?.headingText}</span>
-                <span className="text-2xl transform scale-x-[-1]">💪</span>
+                <span className="text-2xl transform scale-x-[-1]">{bmiResult?.motivationIcon}</span>
               </h3>
               <p className="text-gray-100 font-semibold text-sm leading-relaxed">
                 {bmiResult?.motivation}
               </p>
             </div>
           </div>
-
-          {/* COACH SECTION - ORANGE THEME */}
-          <div className="bg-gradient-to-r from-orange-600/30 to-red-600/30 backdrop-blur-xl rounded-2xl p-6 border-2 border-orange-400/50 shadow-2xl">
-            
-            {/* Coach Header */}
+          <div className="bg-gradient-to-r from-[#C5A100]/30 to-[#FFE085]/30 backdrop-blur-xl rounded-2xl p-6 border-2 border-[#C5A100]/50 shadow-2xl">
             <div className="text-center mb-4">
               <div className="text-3xl mb-2">💎</div>
               <h3 className="text-xl font-black text-white mb-2">Transform Your Body with Coach Renu</h3>
-              <p className="text-orange-200 font-bold text-sm mb-4">
+              <p className="text-[#FFE085] font-bold text-sm mb-4">
                 15-minute FREE call that changes everything
               </p>
             </div>
-
-            {/* Main Call Button - ORANGE THEME */}
             <div className="mb-4">
-              <button className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-4 rounded-xl font-black text-lg transition-none shadow-xl border-2 border-white/30 w-full mb-3">
+              <button className="bg-gradient-to-r from-[#C5A100] to-[#FFE085] text-black px-8 py-4 rounded-xl font-black text-lg transition-none shadow-xl border-2 border-white/30 w-full mb-3">
                 📞 Schedule CALL
               </button>
-              
-              <p className="text-orange-200 text-xs text-center font-bold">
+              <p className="text-[#FFE085] text-xs text-center font-bold">
                 🔥 Limited slots • Usually $97 • FREE today only
               </p>
             </div>
-
-            {/* Quick Benefits */}
             <div className="grid grid-cols-3 gap-2 text-xs">
               <div className="bg-white/10 rounded-lg p-2 backdrop-blur-sm text-center">
-                <div className="font-black text-orange-300">✓ Find Your Block</div>
+                <div className="font-black text-[#C5A100]">✓ Find Your Block</div>
               </div>
               <div className="bg-white/10 rounded-lg p-2 backdrop-blur-sm text-center">
-                <div className="font-black text-orange-300">✓ Personal Plan</div>
+                <div className="font-black text-[#C5A100]">✓ Personal Plan</div>
               </div>
               <div className="bg-white/10 rounded-lg p-2 backdrop-blur-sm text-center">
-                <div className="font-black text-orange-300">✓ Clear Actions</div>
+                <div className="font-black text-[#C5A100]">✓ Clear Actions</div>
               </div>
             </div>
           </div>
@@ -283,7 +262,6 @@ const BMISection = () => {
     );
   }
 
-  // FORM STEPS - ORANGE THEME
   return (
     <section 
       className="min-h-screen flex items-center justify-center relative"
@@ -296,28 +274,24 @@ const BMISection = () => {
       }}
     >
       <div className="absolute inset-0 bg-black/85"></div>
-      
       <div className="absolute top-6 left-6 z-20">
         <div className="text-2xl font-black text-white">
-          <span className="text-orange-400">Core</span>X
+          <span className="text-[#C5A100]">Core</span>X
         </div>
       </div>
-      
       <div className="max-w-xl mx-auto px-4 relative z-10 py-12">
-        
         <div className="text-center mb-8">
           <h1 className={`text-3xl md:text-4xl font-black text-white mb-4 drop-shadow-2xl transform transition-all duration-800 ease-out ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
           }`}
-          style={{ textShadow: '0 0 30px rgba(255, 102, 0, 0.5)' }}
+          style={{ textShadow: '0 0 30px rgba(197,161,0,0.7)' }}
           >
             CREATE YOUR CUSTOM <br />
-            <span className="bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent font-black">
+            <span className="bg-gradient-to-r from-[#C5A100] to-[#FFE085] bg-clip-text text-transparent font-black">
               FITNESS BLUEPRINT
             </span>
           </h1>
-          
-          <p className={`text-lg text-gray-100 font-bold drop-shadow-xl transform transition-all duration-800 delay-300 ease-out ${
+          <p className={`text-lg text-[#FFE085] font-bold drop-shadow-xl transform transition-all duration-800 delay-300 ease-out ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
           }`}>
             Quick CoreX assessment - Get your personalized workout and nutrition plan
@@ -333,7 +307,7 @@ const BMISection = () => {
                 key={step}
                 className={`w-10 h-10 rounded-full flex items-center justify-center font-black text-sm transition-all duration-500 shadow-xl border ${
                   step <= currentStep
-                    ? 'bg-orange-500 text-white border-orange-300'
+                    ? 'bg-[#C5A100] text-white border-[#FFE085]'
                     : 'bg-gray-800/80 text-gray-400 border-gray-600'
                 }`}
               >
@@ -343,33 +317,31 @@ const BMISection = () => {
           </div>
         </div>
 
-        <div className={`bg-black/70 backdrop-blur-xl rounded-2xl p-6 border border-orange-400/50 shadow-2xl min-h-[400px] flex flex-col justify-between transform transition-all duration-800 delay-900 ease-out ${
+        <div className={`bg-black/70 backdrop-blur-xl rounded-2xl p-6 border border-[#C5A100]/50 shadow-2xl min-h-[400px] flex flex-col justify-between transform transition-all duration-800 delay-900 ease-out ${
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
         }`}>
           <div className={`flex-grow transition-all duration-500 ease-in-out ${
             isTransitioning ? 'opacity-0 transform translate-x-4 scale-95' : 'opacity-100 transform translate-x-0 scale-100'
           }`}>
-            
             {currentStep === 1 && (
               <div className="flex flex-col h-full">
                 <h3 className="text-2xl font-black text-white mb-6 drop-shadow-xl">
                   STEP 1: WHAT IS YOUR GENDER?
                 </h3>
-                
                 <div className="flex-grow flex flex-col justify-center space-y-3">
                   {['Male', 'Female'].map((gender) => (
                     <button
                       key={gender}
                       className={`w-full text-left p-4 rounded-lg border transition-all duration-300 hover:scale-105 shadow-lg backdrop-blur-md ${
                         formData.gender === gender
-                          ? 'bg-orange-500/30 border-orange-400 text-orange-300 shadow-orange-500/50'
-                          : 'bg-gray-800/60 border-gray-600 text-gray-100 hover:border-orange-400'
+                          ? 'bg-[#C5A100]/30 border-[#FFE085] text-[#FFE085] shadow-[#FFE085]/50'
+                          : 'bg-gray-800/60 border-gray-600 text-gray-100 hover:border-[#FFE085]'
                       }`}
                       onClick={() => updateFormData('gender', gender)}
                     >
                       <div className="flex items-center">
                         <div className={`w-5 h-5 rounded-full border mr-3 transition-all duration-300 ${
-                          formData.gender === gender ? 'border-orange-400 bg-orange-400' : 'border-gray-500'
+                          formData.gender === gender ? 'border-[#FFE085] bg-[#FFE085]' : 'border-gray-500'
                         }`}>
                           {formData.gender === gender && <div className="w-full h-full rounded-full bg-white/30"></div>}
                         </div>
@@ -386,17 +358,15 @@ const BMISection = () => {
                 <h3 className="text-2xl font-black text-white mb-6 drop-shadow-xl">
                   STEP 2: WHAT IS YOUR AGE?
                 </h3>
-                
                 <div className="flex-grow flex flex-col justify-center">
                   <div className="mb-4">
-                    <label className="block text-gray-200 text-base mb-2 font-bold">Age</label>
+                    <label className="block text-[#FFE085] text-base mb-2 font-bold">Age</label>
                     <input
                       type="number"
-                      className="w-full bg-gray-800/80 backdrop-blur-md text-white p-3 rounded-lg border border-gray-600 focus:border-orange-400 focus:outline-none text-xl font-black transition-all duration-300"
+                      className="w-full bg-gray-800/80 backdrop-blur-md text-white p-3 rounded-lg border border-[#FFE085] focus:border-[#C5A100] focus:outline-none text-xl font-black transition-all duration-300"
                       value={formData.age}
                       onChange={(e) => updateFormData('age', e.target.value)}
                     />
-                    
                     {ageError && (
                       <div className="mt-3 p-3 bg-red-500/20 backdrop-blur-md border border-red-400 rounded-lg shadow-xl">
                         <p className="text-red-300 font-black text-sm">⚠️ {ageError}</p>
@@ -412,16 +382,16 @@ const BMISection = () => {
                 <h3 className="text-2xl font-black text-white mb-6 drop-shadow-xl">
                   STEP 3: WHAT ARE YOUR CURRENT STATS?
                 </h3>
-                
                 <div className="flex-grow flex flex-col justify-center">
                   <div className="grid grid-cols-2 gap-4 mb-6">
+                    {/* Height */}
                     <div>
-                      <label className="block text-gray-200 text-base mb-2 font-bold">Height</label>
+                      <label className="block text-[#FFE085] text-base mb-2 font-bold">Height</label>
                       <div className="space-y-2">
                         <input
                           type="number"
                           step="0.1"
-                          className="w-full bg-gray-800/80 backdrop-blur-md text-white p-3 rounded-lg border border-gray-600 focus:border-orange-400 focus:outline-none text-lg font-black text-center"
+                          className="w-full bg-gray-800/80 backdrop-blur-md text-white p-3 rounded-lg border border-[#FFE085] focus:border-[#C5A100] focus:outline-none text-lg font-black text-center"
                           value={formData.height}
                           onChange={(e) => updateFormData('height', e.target.value)}
                           placeholder="Enter height"
@@ -431,7 +401,7 @@ const BMISection = () => {
                             type="button"
                             className={`flex-1 py-2 text-sm font-black transition-all duration-300 ${
                               formData.heightUnit === 'cm' 
-                                ? 'bg-orange-500 text-white' 
+                                ? 'bg-[#C5A100] text-white' 
                                 : 'text-gray-300 hover:text-white hover:bg-gray-600'
                             }`}
                             onClick={() => updateFormData('heightUnit', 'cm')}
@@ -442,7 +412,7 @@ const BMISection = () => {
                             type="button"
                             className={`flex-1 py-2 text-sm font-black transition-all duration-300 ${
                               formData.heightUnit === 'ft' 
-                                ? 'bg-orange-500 text-white' 
+                                ? 'bg-[#C5A100] text-white' 
                                 : 'text-gray-300 hover:text-white hover:bg-gray-600'
                             }`}
                             onClick={() => updateFormData('heightUnit', 'ft')}
@@ -453,13 +423,14 @@ const BMISection = () => {
                       </div>
                     </div>
 
+                    {/* Weight */}
                     <div>
-                      <label className="block text-gray-200 text-base mb-2 font-bold">Weight</label>
+                      <label className="block text-[#FFE085] text-base mb-2 font-bold">Weight</label>
                       <div className="space-y-2">
                         <input
                           type="number"
                           step="0.1"
-                          className="w-full bg-gray-800/80 backdrop-blur-md text-white p-3 rounded-lg border border-gray-600 focus:border-orange-400 focus:outline-none text-lg font-black text-center"
+                          className="w-full bg-gray-800/80 backdrop-blur-md text-white p-3 rounded-lg border border-[#FFE085] focus:border-[#C5A100] focus:outline-none text-lg font-black text-center"
                           value={formData.weight}
                           onChange={(e) => updateFormData('weight', e.target.value)}
                           placeholder="Enter weight"
@@ -469,7 +440,7 @@ const BMISection = () => {
                             type="button"
                             className={`flex-1 py-2 text-sm font-black transition-all duration-300 ${
                               formData.weightUnit === 'kg' 
-                                ? 'bg-orange-500 text-white' 
+                                ? 'bg-[#C5A100] text-white' 
                                 : 'text-gray-300 hover:text-white hover:bg-gray-600'
                             }`}
                             onClick={() => updateFormData('weightUnit', 'kg')}
@@ -480,7 +451,7 @@ const BMISection = () => {
                             type="button"
                             className={`flex-1 py-2 text-sm font-black transition-all duration-300 ${
                               formData.weightUnit === 'lbs' 
-                                ? 'bg-orange-500 text-white' 
+                                ? 'bg-[#C5A100] text-white' 
                                 : 'text-gray-300 hover:text-white hover:bg-gray-600'
                             }`}
                             onClick={() => updateFormData('weightUnit', 'lbs')}
@@ -491,7 +462,6 @@ const BMISection = () => {
                       </div>
                     </div>
                   </div>
-
                   {bmiResult && (
                     <div className="text-center mb-6">
                       <div className={`bg-black/60 backdrop-blur-xl rounded-xl p-4 border ${bmiResult.borderColor} shadow-2xl`}>
@@ -525,7 +495,6 @@ const BMISection = () => {
                 <h3 className="text-2xl font-black text-white mb-6 drop-shadow-xl">
                   STEP 4: WHAT IS YOUR PRIMARY GOAL?
                 </h3>
-                
                 <div className="flex-grow flex flex-col justify-center space-y-3">
                   {[
                     { value: 'lose-weight', label: 'Lose Weight & Burn Fat' },
@@ -537,14 +506,14 @@ const BMISection = () => {
                       key={goal.value}
                       className={`w-full text-left p-4 rounded-lg border transition-all duration-300 hover:scale-105 shadow-lg backdrop-blur-md ${
                         formData.fitnessGoal === goal.value
-                          ? 'bg-orange-500/30 border-orange-400 text-orange-300 shadow-orange-500/50'
-                          : 'bg-gray-800/60 border-gray-600 text-gray-100 hover:border-orange-400'
+                          ? 'bg-[#C5A100]/30 border-[#FFE085] text-[#FFE085] shadow-[#FFE085]/50'
+                          : 'bg-gray-800/60 border-gray-600 text-gray-100 hover:border-[#FFE085]'
                       }`}
                       onClick={() => updateFormData('fitnessGoal', goal.value)}
                     >
                       <div className="flex items-center">
                         <div className={`w-5 h-5 rounded-full border mr-3 transition-all duration-300 ${
-                          formData.fitnessGoal === goal.value ? 'border-orange-400 bg-orange-400' : 'border-gray-500'
+                          formData.fitnessGoal === goal.value ? 'border-[#FFE085] bg-[#FFE085]' : 'border-gray-500'
                         }`}>
                           {formData.fitnessGoal === goal.value && <div className="w-full h-full rounded-full bg-white/30"></div>}
                         </div>
@@ -562,7 +531,7 @@ const BMISection = () => {
               className={`px-6 py-2 rounded-lg font-black transition-all duration-300 backdrop-blur-md border ${
                 currentStep === 1
                   ? 'bg-gray-800/60 text-gray-500 cursor-not-allowed border-gray-600'
-                  : 'bg-gray-800/80 text-gray-100 hover:bg-gray-700 hover:scale-105 border-gray-600 hover:border-gray-400'
+                  : 'bg-gray-800/80 text-gray-100 hover:bg-gray-700 hover:scale-105 border-gray-600 hover:border-[#FFE085]'
               }`}
               onClick={prevStep}
               disabled={currentStep === 1 || isTransitioning}
@@ -574,7 +543,7 @@ const BMISection = () => {
               className={`px-6 py-2 rounded-lg font-black transition-all duration-300 backdrop-blur-md border ${
                 !isStepComplete() || isTransitioning
                   ? 'bg-gray-800/60 text-gray-500 cursor-not-allowed border-gray-600'
-                  : 'bg-gradient-to-r from-orange-500 to-red-500 text-white hover:scale-110 shadow-xl border-orange-400'
+                  : 'bg-gradient-to-r from-[#C5A100] to-[#FFE085] text-black hover:scale-110 shadow-xl border-[#C5A100]'
               }`}
               onClick={nextStep}
               disabled={!isStepComplete() || isTransitioning}
